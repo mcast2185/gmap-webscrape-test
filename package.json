@@ -13,11 +13,11 @@
     "@capacitor/ios": "^4.4.0",
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
+    "@codetrix-studio/capacitor-google-auth": "^3.2.0",
     "@googlemaps/google-maps-services-js": "^3.3.16",
     "@ionic/cli": "^6.20.3",
     "@ionic/react": "^6.0.0",
     "@ionic/react-router": "^6.0.0",
-    "@reach/combobox": "^0.18.0",
     "@react-google-maps/api": "^2.13.1",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^13.3.0",
@@ -81,7 +81,8 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "4.4.0"
+    "@capacitor/cli": "4.4.0",
+    "@types/react-helmet": "^6.1.5"
   },
   "description": "An Ionic project"
 }

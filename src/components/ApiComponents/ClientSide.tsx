@@ -13,7 +13,6 @@ const ClientOnly = ({ children: {}, ...delegated }) => {
     return (
       <div {...delegated}>
         {/* {children} */}
-        Sample text
       </div>
     );
   }

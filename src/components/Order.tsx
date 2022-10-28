@@ -30,17 +30,18 @@ import {
   MapOptions
 } from './Type';
 
+import {} from ""
 
 
 const apiKey = String(process.env.REACT_APP_GOOGLE_API_KEY);
+const clientId = String(process.env.ClIENT_ID);
 
 
 
 const Order: React.FC = () => {
-  // let Gapi: gapiObject;
   const [lat, setLat] = useState<number>();
   const [lng, setLng] = useState<number>();
-  const [jsonText, setJsonText] = useState<any>()
+  // const [jsonText, setJsonText] = useState<any>()
   const myLocation = async () => {
     const coordinates = await Geolocation.getCurrentPosition();
     setLat(coordinates.coords.latitude);
@@ -51,6 +52,32 @@ const Order: React.FC = () => {
     return res
   });
 
+
+  useEffect(() => {
+    
+    const gapiCall = () => {
+      gapi.client.init({
+        'apiKey': apiKey,
+        'clientId': clientId,
+        'scope': 'https://www.googleapis.com/auth/cloud-platform',
+      })
+      .then(() => {
+        return gapi.client.request({
+          'path': 'https://www.google.com/search?q=barber+shop+near+me',
+          'method': "GET"
+        })
+      })
+      .then((response) => {
+        console.log(JSON.stringify(response.body));
+        }, (err) => {
+          console.log('Error: ' + err);
+      });
+    }
+    gapiCall();
+    // gapi.client.load('REST', 'v3', gapiCall)
+    // gapi.load('Rest', gapiCall)
+
+  });
 
 
 
