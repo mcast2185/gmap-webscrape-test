@@ -1,3 +1,4 @@
+import React, {Component} from 'react';
 import { Route } from 'react-router-dom';
 import {
   IonApp,
@@ -11,6 +12,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, search, home, trophy } from 'ionicons/icons';
+
 
 
 import Tab1 from './pages/Tab1';
@@ -35,14 +37,44 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-// import GapiAuth from './components/GapiAuth';
 
+
+
+
+
+const apiKey = String(process.env.REACT_APP_GOOGLE_API_KEY);
 
 setupIonicReact();
 
-const App: React.FC = () => (
+class App extends Component {
+  constructor(props: any) {
+    super(props);
+    this.state = {gapiReady: false}
+  }
+
+  loadGoogleApi() {
+    const script = document.createElement("script");
+    script.src = "https://apis.google.com/js/client.js";
+
+    script.onload = () => {
+      gapi.load('client', () => {
+        gapi.client.setApiKey(apiKey);
+        gapi.client.load('client:auth2', 'v3', () => {
+          this.setState({ gapiReady: true });
+        });
+      });
+    };
+
+    document.body.appendChild(script);
+  }
+
+  componentDidMount() {
+    this.loadGoogleApi();
+  }
+
+  render () {
+    return (
   <IonApp>
-    {/* <GapiAuth/> */}
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
@@ -73,6 +105,7 @@ const App: React.FC = () => (
       </IonTabs>
     </IonReactRouter>
   </IonApp>
-);
+  )}
+};
 
 export default App;

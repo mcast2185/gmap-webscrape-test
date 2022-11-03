@@ -4,6 +4,24 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+// const robots = {
+//   input: require('./robots/input'),
+//   text: require('./robots/text'),
+//   state: require('./robots/state'),
+//   image: require('./robots/image')
+// }
+
+// async function start() {
+//   robots.input();
+//   await robots.text()
+//   await robots.image()
+
+//   const content = robots.state.load()
+//   console.dir(content, {depth: null});
+  
+// }
+// start();
+
 const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(

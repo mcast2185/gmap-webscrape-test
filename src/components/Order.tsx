@@ -29,19 +29,39 @@ import {
   DirectionsResult,
   MapOptions
 } from './Type';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import {
+  Filesystem,
+  Directory,
+  Encoding
+} from '@capacitor/filesystem';
+import {gapi, loadAuth2} from 'gapi-script'
 
-import {} from ""
 
+
+
+// custom search api key: AIzaSyDTy1ROsgIAaBRBCSYfJJg1FafgyUdLIU4
+// search engine id: a30a9a3e8a7e24f73
+// custom search clientid: 339917931891-4r4ml1gbsq16rmt3p7cs9tco0lu9i71n.apps.googleusercontent.com
+// this is the Oauth scope: https://www.googleapis.com/auth/cse
+// the HTTP request: GET https://customsearch.googleapis.com/customsearch/v1?
+// the code used to render on HTML: <script async src="https://cse.google.com/cse.js?cx=a30a9a3e8a7e24f73"></script> <div class="gcse-search"></div>
 
 const apiKey = String(process.env.REACT_APP_GOOGLE_API_KEY);
-const clientId = String(process.env.ClIENT_ID);
-
-
+const clientId = "910305720717-7886debvklf4mkpmg9rdu93h71elsns0.apps.googleusercontent.com";
 
 const Order: React.FC = () => {
+  loadAuth2(gapi,clientId, "https://apis.google.com/js/platform.js?onload=init").then(res => {return res})
+  // GoogleAuth.initialize({
+  //   'clientId': clientId
+  // });
+
+
+
+
   const [lat, setLat] = useState<number>();
   const [lng, setLng] = useState<number>();
-  // const [jsonText, setJsonText] = useState<any>()
+
   const myLocation = async () => {
     const coordinates = await Geolocation.getCurrentPosition();
     setLat(coordinates.coords.latitude);
@@ -52,34 +72,20 @@ const Order: React.FC = () => {
     return res
   });
 
-
+  
   useEffect(() => {
-    
     const gapiCall = () => {
       gapi.client.init({
-        'apiKey': apiKey,
-        'clientId': clientId,
-        'scope': 'https://www.googleapis.com/auth/cloud-platform',
+        apiKey: apiKey,
+        clientId: clientId,
+        scope: 'https://www.googleapis.com/auth/cloud-platform',
       })
-      .then(() => {
-        return gapi.client.request({
-          'path': 'https://www.google.com/search?q=barber+shop+near+me',
-          'method': "GET"
-        })
-      })
-      .then((response) => {
-        console.log(JSON.stringify(response.body));
-        }, (err) => {
-          console.log('Error: ' + err);
-      });
-    }
-    gapiCall();
-    // gapi.client.load('REST', 'v3', gapiCall)
-    // gapi.load('Rest', gapiCall)
+    };
 
-  });
+    gapi.load("client:auth2", gapiCall)
+  })
 
-
+  
 
 
 
@@ -110,15 +116,3 @@ const Order: React.FC = () => {
 
 export default Order;
 
-
-    // await googleApi?.discoverAPI("https://www.google.com/search?q=barber+shop+near+me&oq=barber+shop+near+me&aqs=chrome..69i57j69i59j0i512l8.4644j0j7&sourceid=chrome&ie=UTF-8",     {  
-    //   method: 'GET',    
-    //   mode: 'no-cors'    
-    // }).then(res => {
-    //   JSON.stringify(res._options.data)
-    // })
-
-    // await gapi.client.setApiKey(apiKey);
-    // return gapi.client.load("https://www.google.com/search?q=barber+shop+near+me&oq=barber+shop+near+me&aqs=chrome..69i57j69i59j0i512l8.4644j0j7&sourceid=chrome&ie=UTF-8", "v2")
-    //     .then(function() { console.log("GAPI client loaded for API"); },
-    //           function(err: any) { console.error("Error loading GAPI client for API", err); });

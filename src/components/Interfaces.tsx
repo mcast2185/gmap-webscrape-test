@@ -14,3 +14,8 @@ export interface geocodeRequest {
   componentRestrictions: google.maps.GeocoderComponentRestrictions,
   region: string
 };
+
+export interface corsGet {  
+  method: 'GET',    
+  mode: 'no-cors'    
+}
