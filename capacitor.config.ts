@@ -10,7 +10,8 @@ const config: CapacitorConfig = {
     scopes: ["profile","email", "BigQuery"],
     serverClientId: "910305720717-7886debvklf4mkpmg9rdu93h71elsns0.apps.googleusercontent.com",
     forceCodeForRefreshToken: true
-    }
+    },
+    google: {}
   }
 };
 
