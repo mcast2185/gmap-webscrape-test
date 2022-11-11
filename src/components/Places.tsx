@@ -13,7 +13,7 @@ from "use-places-autocomplete";
 // import "@reach/combobox/styles.css";
 import React from "react";
 import ClientOnly from './ApiComponents/ClientSide';
-import Search from "./ApiComponents/Search";
+
 
 type PlacesProps = {
   setOffice: (position: google.maps.LatLngLiteral) => void;

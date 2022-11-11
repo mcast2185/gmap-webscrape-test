@@ -1,8 +1,16 @@
-import { GoogleApis, google, customsearch_v1 } from 'googleapis';
-import { loadAuth2, gapiComplete} from 'gapi-script';
-import {Geolocation} from "@capacitor/geolocation";
-import React, {useState, useEffect} from 'react';
-import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { loadAuth2} from 'gapi-script';
+import { 
+  IonItem, 
+  IonLabel, 
+  IonList, 
+  IonListHeader
+} from '@ionic/react';
+
+
+
+
+
+
 
 
 
@@ -32,38 +40,45 @@ const input = {
 }
 
 
+const SearchResults = () => {  
+  let arr: any[] = [];
 
 
-const SearchResults = ({results}: any) => {
-  loadAuth2(gapi, clientId, "https://www.googleapis.com/auth/cse").then(res => {return res})
-  const [lat, setLat] = useState<number>();
-  const [lng, setLng] = useState<number>();
-
-
-
-
-  const myLocation = async () => {
-    const coordinates = await Geolocation.getCurrentPosition();
-    setLat(coordinates.coords.latitude);
-    setLng(coordinates.coords.longitude);
-    return;
-  };
-  myLocation().then(res => {
-    return res
-  });
-
+  const test = (obj: any) => {
+    const dict: any = {};
+    try {
+      for (let key in obj) {
+        const value = obj[key];
+        const type = typeof value;
+        if (["string", "boolean"].includes(type) || (type === "number" && !isNaN(value) || !undefined)){
+          dict[key] = value;
+          debugger;
+        } else if ( type === "object") {
+          Object.assign(dict, test(value))
+          debugger;
+        } else if ( type === undefined) {
+          Object.assign(dict, test(Object.values(obj)))
+          debugger;
+        }
+      }
+    } catch(err) {
+      console.log(err);
+      
+    }
+    return dict['title']
+  }
 
 
   const loadClientApi = () => {
     loadAuth2(gapi, clientId, "https://www.googleapis.com/auth/cse").then(res => {return res});
+    gapi.client.setApiKey(apiKey)
     return gapi.load("client", ()=> {
-      gapi.client.setApiKey(apiKey);
-      return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch/v1/rest", "v1");
+      return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch", "v1");
     });
   };
 
   const executeApiQuery = () => {
-    const handlePromise = new Promise((res, rej) => {
+    const query = new Promise((res, rej) => {
       res((res: any) => {
         if (res.ok){
           return loadClientApi();
@@ -74,100 +89,65 @@ const SearchResults = ({results}: any) => {
           });
         };
       });
-    }).then( async () => {
-      const response = await gapi.client.request({
+    })
+    .then( async () => {
+      const response: gapi.client.HttpRequest<any> | any = await gapi.client.request({
         path: `https://www.googleapis.com/customsearch/v1?key=${input.key}&cx=${input.cx}&q=${input.q}&start=${input.start}`,
         method: "GET",
-        params: input 
-      }) 
+        params: input,
+        body: JSON
+      });
       if (response.status == 200){
-      console.log( response.body);
-      
-        return Promise.resolve(response.body);
+        
+        // create a function that parses through each of the values response.body returns and loop it through our test function callback
+        // the test function we created will have to filter and reassign the types through its loop
 
-      } else {
-        Promise.reject(response);
-        console.error();
-
+        // return test(JSON.parse(response.body))
+        Object.values(JSON.parse(response.body)).forEach(el => {
+          arr.push(el)
+        })
+        return JSON.parse(response.body)
       };
-      // console.log( typeof response.result);
-      
-      // const responseQuery = await fetch(
-      //   `https://www.googleapis.com/customsearch/v1?key=${input.key}&cx=${input.cx}&q=${input.q}&start=${input.start}`);
-      // if (responseQuery.ok){
-      //   return Promise.resolve(responseQuery.json());
-
-      // } else {
-      //   Promise.reject(responseQuery);
-      //   console.error();
-
-      // };
-    });
-    return handlePromise
+    })
+    .catch(err => err);
+    return query;
   };
 
 
-  // executeApiQuery().then(res => {
-  //   return JSON.parse(JSON.stringify(res))
-  // });
   console.log(executeApiQuery());
+  console.log(arr);
+  
 
   
-    // let queryHandler = JSON.stringify(res).normalize()
-    // const queryParse = JSON.parse(queryHandler)
-    // return Object.values(queryParse).forEach(el => {
-    //   if (el === undefined) {
-    //     el = Symbol(el).description?.substring(0)
-    //     queryResults.push(el)
-    //   }
-    // })
-    
 
-  // console.log(queryResults.entries().next());
-  
 
   
   
 
-  // queryResults.forEach(el => {
-  //   queryResults.at(el)
-  //   console.log(String(queryResults.at(el)));
-  //   return String(queryResults.at(1))
-  // })
-  // console.log(queryResults)
-  
-  
+
 
   return (
-    <div id="csAPI">
-      <p>
-        heyyy
-      </p>
-    </div>
+    <IonList>
+    <IonListHeader>
+      <IonLabel>Test deconstruct<div>{}</div></IonLabel>
+    </IonListHeader>
+    <IonItem>
+      <IonLabel>Custom search Title Api</IonLabel>
+    </IonItem>
+    <IonItem>
+      <IonLabel>Custom search ratings api</IonLabel>
+    </IonItem>
+    <IonItem>
+      <IonLabel>Custom search directions api</IonLabel>
+    </IonItem>
+    <IonItem>
+      <IonLabel>Custom search contact api</IonLabel>
+    </IonItem>
+  </IonList>
   )
 }
 
 export default SearchResults;
-
-// export async function getServerSideProps({key,cx,q,start}: any) {
-//   const responseQuery = await customSearch.cse.list({
-//     key: apiKey,
-//     cx: searchEngineId,
-//     q: "Barber Shops near me",
-//     start: 1
-//   }).then(response => {
-
-//     if (response) {
-//       console.log(response.data);
-//     }
-//     return response.data
-//   });
-//   return {
-//     props: {
-//       results: responseQuery
-//     }
-//   }
-// }
 
 
  

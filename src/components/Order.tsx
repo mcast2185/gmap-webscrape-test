@@ -14,10 +14,6 @@ import React, {
 // } from "@react-google-maps/api";
 import {Geolocation} from "@capacitor/geolocation";
 import { 
-  IonContent, 
-  IonButton, 
-  IonInput, 
-  IonIcon, 
   IonItem, 
   IonLabel, 
   IonList, 
@@ -50,40 +46,8 @@ import {gapi, loadAuth2} from 'gapi-script'
 const apiKey = String(process.env.REACT_APP_GOOGLE_API_KEY);
 const clientId = "910305720717-7886debvklf4mkpmg9rdu93h71elsns0.apps.googleusercontent.com";
 
-const Order: React.FC = () => {
-  loadAuth2(gapi,clientId, "https://apis.google.com/js/platform.js?onload=init").then(res => {return res})
-  // GoogleAuth.initialize({
-  //   'clientId': clientId
-  // });
-
-
-
-
-  const [lat, setLat] = useState<number>();
-  const [lng, setLng] = useState<number>();
-
-  const myLocation = async () => {
-    const coordinates = await Geolocation.getCurrentPosition();
-    setLat(coordinates.coords.latitude);
-    setLng(coordinates.coords.longitude);
-    return;
-  };
-  myLocation().then(res => {
-    return res
-  });
-
-  
-  useEffect(() => {
-    const gapiCall = () => {
-      gapi.client.init({
-        apiKey: apiKey,
-        clientId: clientId,
-        scope: 'https://www.googleapis.com/auth/cloud-platform',
-      })
-    };
-
-    gapi.load("client:auth2", gapiCall)
-  })
+const Order: React.FC<any> = ({props}) => {
+  const test = props
 
   
 
@@ -92,23 +56,15 @@ const Order: React.FC = () => {
   return (
     <IonList>
     <IonListHeader>
-      <IonLabel>Video Games</IonLabel>
+      <IonLabel>Video Games: {test}</IonLabel>
     </IonListHeader>
-    <IonItem>
-      <IonLabel>Pokémon Yellow</IonLabel>
-    </IonItem>
     <IonItem>
       <IonLabel>Mega Man X</IonLabel>
     </IonItem>
     <IonItem>
       <IonLabel>The Legend of Zelda</IonLabel>
     </IonItem>
-    <IonItem>
-      <IonLabel>Pac-Man</IonLabel>
-    </IonItem>
-    <IonItem>
-      <IonLabel>Super Mario World</IonLabel>
-    </IonItem>
+
   </IonList>
   )
 }

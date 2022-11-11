@@ -15,6 +15,7 @@
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@codetrix-studio/capacitor-google-auth": "^3.2.0",
+    "@googleapis/customsearch": "^1.0.0",
     "@googlemaps/google-maps-services-js": "^3.3.16",
     "@ionic/cli": "^6.20.3",
     "@ionic/react": "^6.0.0",

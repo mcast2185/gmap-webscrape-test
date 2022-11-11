@@ -6,7 +6,7 @@ import {
 } from '@ionic/react';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import {GoogleLogin, GoogleLogout} from "react-google-login";
-import { gapi } from 'gapi-script';
+import { gapi, loadAuth2 } from 'gapi-script';
 import SearchResults from '../search';
 
 const clientId = "910305720717-7886debvklf4mkpmg9rdu93h71elsns0.apps.googleusercontent.com";
@@ -37,10 +37,10 @@ const Home: React.FC<{}> = () => {
   };
 
   // we get back an access and id token
-  const refresh = async () => {
-    const authCode = await GoogleAuth.refresh();
-    console.log("refresh: ", authCode);
-  };
+  // const refresh = async () => {
+  //   const authCode = await GoogleAuth.refresh();
+  //   console.log("refresh: ", authCode);
+  // };
 
   // alternative way to sign out
   // const signOut = async () => {
