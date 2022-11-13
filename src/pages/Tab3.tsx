@@ -1,12 +1,11 @@
-import React from 'react';
-import ClientOnly from '../components/ApiComponents/ClientSide';
-import Home from './home';
-
+import Map from '../components/map';
 
 
 const Tab3 = () => {
+
+
   return (
-    <Home/>
+    <Map/>
   )
 }
 

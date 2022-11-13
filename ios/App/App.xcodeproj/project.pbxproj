@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,8 +14,109 @@
 		504EC30F1FED79650016851F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30E1FED79650016851F /* Assets.xcassets */; };
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
+		830C0262291F40FD002E334B /* AppAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C024D291F40FD002E334B /* AppAuth.framework */; };
+		830C0263291F40FD002E334B /* AppAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C024D291F40FD002E334B /* AppAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0264291F40FD002E334B /* Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C024E291F40FD002E334B /* Capacitor.framework */; };
+		830C0265291F40FD002E334B /* Capacitor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C024E291F40FD002E334B /* Capacitor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0266291F40FE002E334B /* CapacitorApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C024F291F40FD002E334B /* CapacitorApp.framework */; };
+		830C0267291F40FE002E334B /* CapacitorApp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C024F291F40FD002E334B /* CapacitorApp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0268291F40FE002E334B /* CapacitorCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0250291F40FD002E334B /* CapacitorCamera.framework */; };
+		830C0269291F40FE002E334B /* CapacitorCamera.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0250291F40FD002E334B /* CapacitorCamera.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C026A291F40FF002E334B /* CapacitorCommunityAppleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0251291F40FD002E334B /* CapacitorCommunityAppleSignIn.framework */; };
+		830C026B291F40FF002E334B /* CapacitorCommunityAppleSignIn.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0251291F40FD002E334B /* CapacitorCommunityAppleSignIn.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C026C291F40FF002E334B /* CapacitorCommunityCapacitorGooglemapsNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0252291F40FD002E334B /* CapacitorCommunityCapacitorGooglemapsNative.framework */; };
+		830C026D291F40FF002E334B /* CapacitorCommunityCapacitorGooglemapsNative.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0252291F40FD002E334B /* CapacitorCommunityCapacitorGooglemapsNative.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C026E291F40FF002E334B /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0253291F40FD002E334B /* Cordova.framework */; };
+		830C026F291F40FF002E334B /* Cordova.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0253291F40FD002E334B /* Cordova.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0270291F4100002E334B /* CapacitorFilesystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0254291F40FD002E334B /* CapacitorFilesystem.framework */; };
+		830C0271291F4100002E334B /* CapacitorFilesystem.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0254291F40FD002E334B /* CapacitorFilesystem.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0272291F4100002E334B /* CapacitorGeolocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0255291F40FD002E334B /* CapacitorGeolocation.framework */; };
+		830C0273291F4100002E334B /* CapacitorGeolocation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0255291F40FD002E334B /* CapacitorGeolocation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0274291F4101002E334B /* CapacitorGoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0256291F40FD002E334B /* CapacitorGoogleMaps.framework */; };
+		830C0275291F4101002E334B /* CapacitorGoogleMaps.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0256291F40FD002E334B /* CapacitorGoogleMaps.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0276291F4101002E334B /* CapacitorHaptics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0257291F40FD002E334B /* CapacitorHaptics.framework */; };
+		830C0277291F4101002E334B /* CapacitorHaptics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0257291F40FD002E334B /* CapacitorHaptics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0278291F4102002E334B /* CapacitorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0258291F40FD002E334B /* CapacitorKeyboard.framework */; };
+		830C0279291F4102002E334B /* CapacitorKeyboard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0258291F40FD002E334B /* CapacitorKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C027A291F4102002E334B /* CapacitorPreferences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0259291F40FD002E334B /* CapacitorPreferences.framework */; };
+		830C027B291F4102002E334B /* CapacitorPreferences.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0259291F40FD002E334B /* CapacitorPreferences.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C027C291F4103002E334B /* CapacitorStatusBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C025A291F40FD002E334B /* CapacitorStatusBar.framework */; };
+		830C027D291F4103002E334B /* CapacitorStatusBar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C025A291F40FD002E334B /* CapacitorStatusBar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C027E291F4103002E334B /* CodetrixStudioCapacitorGoogleAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C025B291F40FD002E334B /* CodetrixStudioCapacitorGoogleAuth.framework */; };
+		830C027F291F4104002E334B /* CodetrixStudioCapacitorGoogleAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C025B291F40FD002E334B /* CodetrixStudioCapacitorGoogleAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0280291F4104002E334B /* GoogleMapsUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C025C291F40FD002E334B /* GoogleMapsUtils.framework */; };
+		830C0281291F4104002E334B /* GoogleMapsUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C025C291F40FD002E334B /* GoogleMapsUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0282291F4105002E334B /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C025D291F40FD002E334B /* GoogleSignIn.framework */; };
+		830C0283291F4105002E334B /* GoogleSignIn.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C025D291F40FD002E334B /* GoogleSignIn.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0284291F4105002E334B /* GoogleSignIn.bundle in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 830C025E291F40FD002E334B /* GoogleSignIn.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0285291F4106002E334B /* GTMAppAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C025F291F40FD002E334B /* GTMAppAuth.framework */; };
+		830C0286291F4106002E334B /* GTMAppAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C025F291F40FD002E334B /* GTMAppAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0287291F4106002E334B /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0260291F40FD002E334B /* GTMSessionFetcher.framework */; };
+		830C0288291F4106002E334B /* GTMSessionFetcher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0260291F40FD002E334B /* GTMSessionFetcher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0289291F4107002E334B /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0261291F40FD002E334B /* Pods_App.framework */; };
+		830C028A291F4107002E334B /* Pods_App.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0261291F40FD002E334B /* Pods_App.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C028F291F59BC002E334B /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 830C028E291F59BC002E334B /* Algorithms */; };
+		830C0295291F67D0002E334B /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0290291F67CB002E334B /* XcodeKit.framework */; };
+		830C0296291F67D1002E334B /* XcodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0290291F67CB002E334B /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0297291F67D2002E334B /* StoreKitTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0291291F67CC002E334B /* StoreKitTest.framework */; };
+		830C0298291F67D2002E334B /* StoreKitTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0291291F67CC002E334B /* StoreKitTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C0299291F67D3002E334B /* InterfaceBuilderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0292291F67CD002E334B /* InterfaceBuilderKit.framework */; };
+		830C029A291F67D4002E334B /* InterfaceBuilderKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0292291F67CD002E334B /* InterfaceBuilderKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C029B291F67D5002E334B /* Python3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0293291F67CD002E334B /* Python3.framework */; };
+		830C029C291F67D6002E334B /* Python3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0293291F67CD002E334B /* Python3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C029D291F67D7002E334B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0294291F67CE002E334B /* XCTest.framework */; };
+		830C029E291F67D8002E334B /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 830C0294291F67CE002E334B /* XCTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A084ECDBA7D38E1E42DFC39D /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		830C028B291F4108002E334B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				830C028A291F4107002E334B /* Pods_App.framework in Embed Frameworks */,
+				830C0277291F4101002E334B /* CapacitorHaptics.framework in Embed Frameworks */,
+				830C029E291F67D8002E334B /* XCTest.framework in Embed Frameworks */,
+				830C029C291F67D6002E334B /* Python3.framework in Embed Frameworks */,
+				830C0269291F40FE002E334B /* CapacitorCamera.framework in Embed Frameworks */,
+				830C0283291F4105002E334B /* GoogleSignIn.framework in Embed Frameworks */,
+				830C026D291F40FF002E334B /* CapacitorCommunityCapacitorGooglemapsNative.framework in Embed Frameworks */,
+				830C0298291F67D2002E334B /* StoreKitTest.framework in Embed Frameworks */,
+				830C0263291F40FD002E334B /* AppAuth.framework in Embed Frameworks */,
+				830C0281291F4104002E334B /* GoogleMapsUtils.framework in Embed Frameworks */,
+				830C027F291F4104002E334B /* CodetrixStudioCapacitorGoogleAuth.framework in Embed Frameworks */,
+				830C0286291F4106002E334B /* GTMAppAuth.framework in Embed Frameworks */,
+				830C0296291F67D1002E334B /* XcodeKit.framework in Embed Frameworks */,
+				830C026B291F40FF002E334B /* CapacitorCommunityAppleSignIn.framework in Embed Frameworks */,
+				830C0271291F4100002E334B /* CapacitorFilesystem.framework in Embed Frameworks */,
+				830C0279291F4102002E334B /* CapacitorKeyboard.framework in Embed Frameworks */,
+				830C029A291F67D4002E334B /* InterfaceBuilderKit.framework in Embed Frameworks */,
+				830C0267291F40FE002E334B /* CapacitorApp.framework in Embed Frameworks */,
+				830C026F291F40FF002E334B /* Cordova.framework in Embed Frameworks */,
+				830C0275291F4101002E334B /* CapacitorGoogleMaps.framework in Embed Frameworks */,
+				830C0273291F4100002E334B /* CapacitorGeolocation.framework in Embed Frameworks */,
+				830C0288291F4106002E334B /* GTMSessionFetcher.framework in Embed Frameworks */,
+				830C0265291F40FD002E334B /* Capacitor.framework in Embed Frameworks */,
+				830C027B291F4102002E334B /* CapacitorPreferences.framework in Embed Frameworks */,
+				830C027D291F4103002E334B /* CapacitorStatusBar.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		830C028C291F4108002E334B /* Embed PlugIns */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				830C0284291F4105002E334B /* GoogleSignIn.bundle in Embed PlugIns */,
+			);
+			name = "Embed PlugIns";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
@@ -27,6 +128,32 @@
 		504EC3111FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
+		830C024D291F40FD002E334B /* AppAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C024E291F40FD002E334B /* Capacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Capacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C024F291F40FD002E334B /* CapacitorApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CapacitorApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0250291F40FD002E334B /* CapacitorCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CapacitorCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0251291F40FD002E334B /* CapacitorCommunityAppleSignIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CapacitorCommunityAppleSignIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0252291F40FD002E334B /* CapacitorCommunityCapacitorGooglemapsNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CapacitorCommunityCapacitorGooglemapsNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0253291F40FD002E334B /* Cordova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Cordova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0254291F40FD002E334B /* CapacitorFilesystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CapacitorFilesystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0255291F40FD002E334B /* CapacitorGeolocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CapacitorGeolocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0256291F40FD002E334B /* CapacitorGoogleMaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CapacitorGoogleMaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0257291F40FD002E334B /* CapacitorHaptics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CapacitorHaptics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0258291F40FD002E334B /* CapacitorKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CapacitorKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0259291F40FD002E334B /* CapacitorPreferences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CapacitorPreferences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C025A291F40FD002E334B /* CapacitorStatusBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CapacitorStatusBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C025B291F40FD002E334B /* CodetrixStudioCapacitorGoogleAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CodetrixStudioCapacitorGoogleAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C025C291F40FD002E334B /* GoogleMapsUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleMapsUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C025D291F40FD002E334B /* GoogleSignIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C025E291F40FD002E334B /* GoogleSignIn.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = GoogleSignIn.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C025F291F40FD002E334B /* GTMAppAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMAppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0260291F40FD002E334B /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0261291F40FD002E334B /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C0290291F67CB002E334B /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
+		830C0291291F67CC002E334B /* StoreKitTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKitTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/StoreKitTest.framework; sourceTree = DEVELOPER_DIR; };
+		830C0292291F67CD002E334B /* InterfaceBuilderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InterfaceBuilderKit.framework; path = Library/Frameworks/InterfaceBuilderKit.framework; sourceTree = DEVELOPER_DIR; };
+		830C0293291F67CD002E334B /* Python3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python3.framework; path = Library/Frameworks/Python3.framework; sourceTree = DEVELOPER_DIR; };
+		830C0294291F67CE002E334B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		FC68EB0AF532CFC21C3344DD /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
@@ -37,7 +164,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				830C0270291F4100002E334B /* CapacitorFilesystem.framework in Frameworks */,
+				830C0262291F40FD002E334B /* AppAuth.framework in Frameworks */,
+				830C027A291F4102002E334B /* CapacitorPreferences.framework in Frameworks */,
+				830C0289291F4107002E334B /* Pods_App.framework in Frameworks */,
+				830C0272291F4100002E334B /* CapacitorGeolocation.framework in Frameworks */,
+				830C0287291F4106002E334B /* GTMSessionFetcher.framework in Frameworks */,
+				830C0280291F4104002E334B /* GoogleMapsUtils.framework in Frameworks */,
+				830C027C291F4103002E334B /* CapacitorStatusBar.framework in Frameworks */,
+				830C0266291F40FE002E334B /* CapacitorApp.framework in Frameworks */,
+				830C0282291F4105002E334B /* GoogleSignIn.framework in Frameworks */,
+				830C027E291F4103002E334B /* CodetrixStudioCapacitorGoogleAuth.framework in Frameworks */,
 				A084ECDBA7D38E1E42DFC39D /* Pods_App.framework in Frameworks */,
+				830C0278291F4102002E334B /* CapacitorKeyboard.framework in Frameworks */,
+				830C026E291F40FF002E334B /* Cordova.framework in Frameworks */,
+				830C0285291F4106002E334B /* GTMAppAuth.framework in Frameworks */,
+				830C0268291F40FE002E334B /* CapacitorCamera.framework in Frameworks */,
+				830C029D291F67D7002E334B /* XCTest.framework in Frameworks */,
+				830C029B291F67D5002E334B /* Python3.framework in Frameworks */,
+				830C0295291F67D0002E334B /* XcodeKit.framework in Frameworks */,
+				830C026C291F40FF002E334B /* CapacitorCommunityCapacitorGooglemapsNative.framework in Frameworks */,
+				830C0276291F4101002E334B /* CapacitorHaptics.framework in Frameworks */,
+				830C0299291F67D3002E334B /* InterfaceBuilderKit.framework in Frameworks */,
+				830C028F291F59BC002E334B /* Algorithms in Frameworks */,
+				830C026A291F40FF002E334B /* CapacitorCommunityAppleSignIn.framework in Frameworks */,
+				830C0264291F40FD002E334B /* Capacitor.framework in Frameworks */,
+				830C0274291F4101002E334B /* CapacitorGoogleMaps.framework in Frameworks */,
+				830C0297291F67D2002E334B /* StoreKitTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +200,32 @@
 		27E2DDA53C4D2A4D1A88CE4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				830C0292291F67CD002E334B /* InterfaceBuilderKit.framework */,
+				830C0293291F67CD002E334B /* Python3.framework */,
+				830C0291291F67CC002E334B /* StoreKitTest.framework */,
+				830C0290291F67CB002E334B /* XcodeKit.framework */,
+				830C0294291F67CE002E334B /* XCTest.framework */,
+				830C024D291F40FD002E334B /* AppAuth.framework */,
+				830C024E291F40FD002E334B /* Capacitor.framework */,
+				830C024F291F40FD002E334B /* CapacitorApp.framework */,
+				830C0250291F40FD002E334B /* CapacitorCamera.framework */,
+				830C0251291F40FD002E334B /* CapacitorCommunityAppleSignIn.framework */,
+				830C0252291F40FD002E334B /* CapacitorCommunityCapacitorGooglemapsNative.framework */,
+				830C0253291F40FD002E334B /* Cordova.framework */,
+				830C0254291F40FD002E334B /* CapacitorFilesystem.framework */,
+				830C0255291F40FD002E334B /* CapacitorGeolocation.framework */,
+				830C0256291F40FD002E334B /* CapacitorGoogleMaps.framework */,
+				830C0257291F40FD002E334B /* CapacitorHaptics.framework */,
+				830C0258291F40FD002E334B /* CapacitorKeyboard.framework */,
+				830C0259291F40FD002E334B /* CapacitorPreferences.framework */,
+				830C025A291F40FD002E334B /* CapacitorStatusBar.framework */,
+				830C025B291F40FD002E334B /* CodetrixStudioCapacitorGoogleAuth.framework */,
+				830C025C291F40FD002E334B /* GoogleMapsUtils.framework */,
+				830C025D291F40FD002E334B /* GoogleSignIn.framework */,
+				830C025E291F40FD002E334B /* GoogleSignIn.bundle */,
+				830C025F291F40FD002E334B /* GTMAppAuth.framework */,
+				830C0260291F40FD002E334B /* GTMSessionFetcher.framework */,
+				830C0261291F40FD002E334B /* Pods_App.framework */,
 				AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */,
 			);
 			name = Frameworks;
@@ -107,12 +286,17 @@
 				504EC3021FED79650016851F /* Resources */,
 				9592DBEFFC6D2A0C8D5DEB22 /* [CP] Embed Pods Frameworks */,
 				B83D9B9622BAFB98169E930A /* [CP] Copy Pods Resources */,
+				830C028B291F4108002E334B /* Embed Frameworks */,
+				830C028C291F4108002E334B /* Embed PlugIns */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = App;
+			packageProductDependencies = (
+				830C028E291F59BC002E334B /* Algorithms */,
+			);
 			productName = App;
 			productReference = 504EC3041FED79650016851F /* App.app */;
 			productType = "com.apple.product-type.application";
@@ -124,7 +308,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					504EC3031FED79650016851F = {
 						CreatedOnToolsVersion = 9.2;
@@ -142,6 +326,9 @@
 				Base,
 			);
 			mainGroup = 504EC2FB1FED79650016851F;
+			packageReferences = (
+				830C028D291F59BC002E334B /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
 			productRefGroup = 504EC3051FED79650016851F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -263,6 +450,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -270,8 +458,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -320,6 +510,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -327,8 +518,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -351,7 +544,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -363,9 +557,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = App;
+				DEVELOPMENT_TEAM = CQA7H2B5JC;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ionic.starter;
@@ -383,9 +582,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = App;
+				DEVELOPMENT_TEAM = CQA7H2B5JC;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.ionic.starter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -417,6 +621,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		830C028D291F59BC002E334B /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		830C028E291F59BC002E334B /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 830C028D291F59BC002E334B /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 504EC2FC1FED79650016851F /* Project object */;
 }

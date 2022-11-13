@@ -7,11 +7,12 @@ const config: CapacitorConfig = {
   bundledWebRuntime: false,
   plugins: {
     GoogleAuth: {
-    scopes: ["profile","email", "BigQuery"],
+    scopes: ["profile","email", "https://www.googleapis.com/auth/cse"],
     serverClientId: "910305720717-7886debvklf4mkpmg9rdu93h71elsns0.apps.googleusercontent.com",
-    forceCodeForRefreshToken: true
+    forceCodeForRefreshToken: true,
+    iosClientId: "customsearch-367418",
+    androidClientId: "customsearch-367418",
     },
-    google: {}
   }
 };
 

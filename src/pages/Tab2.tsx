@@ -1,9 +1,11 @@
-import React from 'react';
-import Order from '../components/Order';
+import SearchResults from '../search';
 
 const Tab2 = () => {
+
   return (
-    <Order/>
+    <div>
+      <SearchResults/>
+    </div>
   )
 }
 

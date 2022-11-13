@@ -1,3 +1,4 @@
+export type DomElement = React.ElementType
 export type LatLit = google.maps.LatLngLiteral
 export type DirectionsResult = google.maps.DirectionsResult
 export type MapOptions = google.maps.MapOptions

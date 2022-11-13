@@ -10,10 +10,14 @@ import {
   MarkerClusterer,
   DirectionsRenderer
 } from "@react-google-maps/api";
-import {Geolocation} from "@capacitor/geolocation";
-
 import Places from './Places';
 import Distance from './Distance';
+// import { 
+//   IonContent, 
+//   IonHeader, 
+//   IonItem 
+// } from '@ionic/react';
+import {Geolocation} from "@capacitor/geolocation";
 import {
   LatLit,
   DirectionsResult,
@@ -21,27 +25,29 @@ import {
 } from './Type';
 
 const containerStyle = {
-  width: "600px",
-  height: "600px"
+  "width": "600px",
+  "height": "600px",
+  "zIndex": "-1"
 };
 
 
 const Map = () => {
-  // the useRef and useState hooks used to render maps is essentially the same
-  // const [service, setService] = useState<gMapDirectionsService>()
   const mapRef = useRef<GoogleMap>()
   const [directions, setDirections] = useState<DirectionsResult>()
-  const [lat, setLat] = useState<number>();
-  const [lng, setLng] = useState<number>();
+  const [lat, setLat] = useState<number>(0);
+  const [lng, setLng] = useState<number>(0);
   const [office, setOffice] = useState<LatLit>();
   const [zoom, setZoom] = useState<number>(12);
 
-  // The code directly below is used for dynamic location, since it is in its nature to change we arent allowed to use useMemo
-  const center: LatLit= {lat: Number(lat), lng: Number(lng)}
 
+  const center: LatLit= {lat: Number(lat), lng: Number(lng)}
+  // if (lat && lng === 0) {
+  //   setLat(39.8274449);
+  //   setLng(-105.0124384);
+  // }
   // const center = useMemo<LatLit>(() => ({
-  //   lat: 39.8274449, 
-  //   lng: -105.0124384
+  //   lat: lat, 
+  //   lng: lng
   // }), [])
 
   const options = useMemo<MapOptions>(() => ({
@@ -56,10 +62,9 @@ const Map = () => {
   const houses = useMemo(() => 
     generateHouses(center), [center]);
 
-  const fetchDirections = (house: LatLit) => {
+  const fetchDirections = async (house: LatLit) => {
     if (!office) return;
-
-    let directionsService = new google.maps.DirectionsService()
+    let directionsService = new google.maps.DirectionsService();
 
     directionsService.route({
       origin: office,
@@ -68,10 +73,11 @@ const Map = () => {
     }, (result, status) => {
       if (status === "OK" && result) {
         setDirections(result);
-      }
+      };
     });
   };
 
+  const onLoad = useCallback((map: any) => (mapRef.current = map), []);
   const myLocation = async () => {
     const coordinates = await Geolocation.getCurrentPosition();
     setLat(coordinates.coords.latitude);
@@ -82,40 +88,39 @@ const Map = () => {
     return res
   });
 
-  const onLoad = useCallback((map: any) => (mapRef.current = map), [])
 
   return (
-    <div className='container'>
-      <div className='controls' >
-        <h1 >
-          Commute?
-        </h1>
-        <Places setOffice={(position: any) => {
-          setOffice(position);
-          mapRef.current?.panTo(position)}}/>
-        {!office && <p>Enter the address of your office</p>}
-        {directions && <Distance leg={directions.routes[0].legs[0]}/>}
-      </div>
-      <div className="map" >
-        <GoogleMap
-          id="map"
-          mapContainerStyle={containerStyle}
-          zoom={zoom}
-          center={center}
-          options={options}
-          onLoad={onLoad}>
-        
-          {directions && (
-            <DirectionsRenderer 
-              directions={directions}
-              options={{
-              polylineOptions: {
-                zIndex: 50,
-                strokeColor: "#1976D2",
-                strokeWeight: 5,
-              },
-            }}/>
-          )}
+        <div className='container'>
+          <div className='controls' >
+            <h1>
+              Directions:
+            </h1>
+            <Places setOffice={(position: any) => {
+              setOffice(position);
+              mapRef.current?.panTo(position)}}/>
+            {!office && <p>Enter the address of your office</p>}
+            {directions && <Distance leg={directions.routes[0].legs[0]}/>}
+          </div>
+          <div className="map" >
+            <GoogleMap
+              id="map"
+              mapContainerStyle={containerStyle}
+              zoom={zoom}
+              center={center}
+              options={options}
+              onLoad={onLoad}>
+            
+              {directions && (
+                <DirectionsRenderer 
+                  directions={directions}
+                  options={{
+                  polylineOptions: {
+                    zIndex: 50,
+                    strokeColor: "#1976D2",
+                    strokeWeight: 5,
+                  },
+                }}/>
+              )}
           {office && (
             <>
               <Marker position={office}/> 
@@ -140,9 +145,11 @@ const Map = () => {
               </MarkerClusterer>
             </>
           )}
-        </GoogleMap>
-      </div>
-    </div>
+            </GoogleMap>
+          </div>
+        </div>
+    //   </IonItem>
+    // </IonContent>
   )
 }
 

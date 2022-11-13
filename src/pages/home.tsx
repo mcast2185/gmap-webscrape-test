@@ -1,73 +1,94 @@
 import React from 'react';
 import {
   IonPage,
-  IonContent,
-  isPlatform
+  isPlatform,
+  IonHeader,
+  IonTitle,
+  IonButton,
+  IonIcon,
+  IonCard
 } from '@ionic/react';
+import { logoApple, logoGoogle } from 'ionicons/icons';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
-import {GoogleLogin, GoogleLogout} from "react-google-login";
-import { gapi, loadAuth2 } from 'gapi-script';
-import SearchResults from '../search';
+import {SignInWithApple} from '@capacitor-community/apple-sign-in';
+import axios from "axios";
+import { gapi } from 'gapi-script';
+import config from '../../capacitor.config';
 
-const clientId = "910305720717-7886debvklf4mkpmg9rdu93h71elsns0.apps.googleusercontent.com";
+
+
+const clientId = String(process.env.CLIENT_ID);
+const API_URL = "http://localhost:5050";
+const API_URL_IOS = "capacitor://localhost:5050";
+const ANDROID = isPlatform('android');
+const IOS = isPlatform('ios');
+
+const parseAttemptLogin = async (res: any, provider: "apple" | "google") => {
+  const response = await axios
+    .post(API_URL + "/login", {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        provider, res
+      })
+    }, {withCredentials: true})
+    .then((res: any) => res.json());
+  console.log("Result: ", response);
+};
 
 
 const Home: React.FC<{}> = () => {
-  // let user: any;
+  // if (!isPlatform('capacitor')){
+  //   GoogleAuth.initialize({
+  //     clientId: clientId,
+  //     scopes: ["profile", "email", "maps", "places"]
+  //   });
+  // };
+
+  const AppleSignIn = async () => {
+    await SignInWithApple.authorize()
+      .then((res: any) => {
+        parseAttemptLogin(res, "apple")
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
   
-  if (!isPlatform('capacitor')){
-    GoogleAuth.initialize({
-      clientId: clientId,
-      scopes: ["profile", "email"]
-    });
+  const GoogleSignIn = async () => {
+    const response = await GoogleAuth.signIn();
+    console.log("Google login", response);
+
+    parseAttemptLogin(response, "google");
   };
 
-
-  // alternative way to sign in, we get back a user object
-  // const signIn = async () => {
-  //   user = await GoogleAuth.signIn();
-  //   console.log("user: ", user);
-  // };
-
-  const onSuccess = (res: any) => {
-    console.log("Current User: ", res.profileObj);
-  };
-  const onFailure = (res: any) => {
-    console.log("Login failed: ", res);
-  };
-
-  // we get back an access and id token
-  // const refresh = async () => {
-  //   const authCode = await GoogleAuth.refresh();
-  //   console.log("refresh: ", authCode);
-  // };
-
-  // alternative way to sign out
-  // const signOut = async () => {
-  //   await GoogleAuth.signOut();
-  //   user = null;
-  //   console.log("user: signed out");
-  // };
 
   return (
     <IonPage>
-      <IonContent className="ion-padding">
-        <GoogleLogin
-          clientId={clientId}
-          buttonText="Login to Google"
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-          cookiePolicy="single_host_origin"
-          isSignedIn={true}/>
-        <GoogleLogout
-          clientId={clientId}
-          buttonText="Logout of Google"
-          onLogoutSuccess={() => 
-            console.log("Logged out of Google Account")}/>
-      </IonContent>
-      <IonContent>
-        <SearchResults/>
-      </IonContent>
+      <IonHeader collapse="condense">
+        <IonTitle size="large">GoogleApi Test</IonTitle>
+      </IonHeader>
+      <IonCard>
+      {IOS && (
+        <>
+        <IonButton expand='block' onClick={AppleSignIn}>
+          <IonIcon slot='start' icon={logoApple}/>
+            Login With Apple
+        </IonButton>
+        </>
+      )}
+      </IonCard>
+      <IonCard>
+      {ANDROID && (
+        <>
+        <IonButton expand='block' onClick={GoogleSignIn}>
+          <IonIcon slot='start' icon={logoGoogle}/>
+            Login With Google
+        </IonButton>
+        </>
+      )}
+      </IonCard>
     </IonPage>
   );
 };
