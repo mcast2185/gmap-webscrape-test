@@ -39,12 +39,12 @@ const parseAttemptLogin = async (res: any, provider: "apple" | "google") => {
 
 
 const Home: React.FC<{}> = () => {
-  // if (!isPlatform('capacitor')){
-  //   GoogleAuth.initialize({
-  //     clientId: clientId,
-  //     scopes: ["profile", "email", "maps", "places"]
-  //   });
-  // };
+  if (!isPlatform('capacitor')){
+    GoogleAuth.initialize({
+      clientId: clientId,
+      scopes: ["profile", "email", "maps", "places"]
+    });
+  };
 
   const AppleSignIn = async () => {
     await SignInWithApple.authorize()
@@ -65,7 +65,7 @@ const Home: React.FC<{}> = () => {
 
 
   return (
-    <IonPage>
+    <div>
       <IonHeader collapse="condense">
         <IonTitle size="large">GoogleApi Test</IonTitle>
       </IonHeader>
@@ -89,7 +89,7 @@ const Home: React.FC<{}> = () => {
         </>
       )}
       </IonCard>
-    </IonPage>
+    </div>
   );
 };
 

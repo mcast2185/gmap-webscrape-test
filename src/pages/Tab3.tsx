@@ -1,4 +1,4 @@
-import Map from '../components/map';
+import Map from '../components/GoogleComponents/map';
 
 
 const Tab3 = () => {

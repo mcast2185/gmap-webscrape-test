@@ -1,4 +1,4 @@
-import SearchResults from '../search';
+import SearchResults from '../components/GoogleComponents/search';
 
 const Tab2 = () => {
 

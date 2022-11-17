@@ -10,6 +10,7 @@ import {
   isPlatform
 } from '@ionic/react';
 import React, { 
+  useMemo,
   Component, 
   useState, 
   useEffect 
@@ -63,28 +64,41 @@ import './theme/variables.css';
 
 setupIonicReact();
 
-const clientId = String(process.env.CLIENT_ID);
-const apiKey = String(process.env.REACT_APP_GOOGLE_API_KEY);
-const libraries: any = ["places", "customsearch" ];
+  const handleCallbackResponse = (response: any) => {
+    console.log("JWT ID TOKEN: " + response.credential);
+    
+  }
+  
+  const clientId = String(process.env.CLIENT_ID);
+  const apiKey = String(process.env.REACT_APP_GOOGLE_API_KEY);
+  const libraries: any = ["places"];
+  const scriptSource = "https://apis.google.com/js/client.js";
+  // const scriptSource = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap`;
+
 
 !isPlatform("capacitor") ? GoogleAuth.initialize({
   clientId: clientId,
-  scopes: ["profile", "email", "https://www.googleapis.com/auth/cse"]
+  scopes: ["profile", "email", "https://www.googleapis.com/auth/cse", scriptSource],
 }) : console.log("GoogleAuth failed to initialize");
  
-const loadGoogleScript = () => {
-  if (!document.querySelector("gapiScript")) {
+const loadGoogleScript = ({src, id, onLoad}: any) => {
+  const exist = document.getElementById(id)
+  if (exist) {
+    console.log("Script already exist");
+    return exist;
+  } else {
     const script = document.createElement("script");
-    script.setAttribute('id', 'gapiScript');
-    script.src = `"https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap"`;
+    script.setAttribute("id", id);
+    script.src = src;
+    script.defer = true;
     script.onload = () => {
+      onLoad && onLoad();
       console.log("Script is loaded");
     };
+    console.log(document.head.appendChild(script));
+    
     document.head.appendChild(script);
-  } else if (document.querySelector("gapiScript")) {
-    console.log("Script already exist");
-  };
-  return;
+  }
 };
 
 
@@ -94,55 +108,66 @@ const App: Component | any = () =>{
     libraries: libraries
   });
 
-  const onLoadClientApi = () => {
-    gapi.client.setApiKey(apiKey);
-    return gapi.load("client", ()=> {
-      return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch", "v1");
-    });
-  }; 
-
 
   if (isLoaded) {
-    console.log("useLoadScript() was successfully called.");
-    return loadGoogleScript();
-  } else if (!isLoaded) {
-
-    return;
+    loadGoogleScript({
+      src: scriptSource,
+      id: 'gapiScript',
+      onLoad: () => console.log("Places library is loaded"),
+    });
+  } else {
+    console.log("Libraries are not loaded");
+    
   };
 
   return (
+
+
     <IonApp>
-      <IonReactRouter>
-        <IonTabs>
-          <IonRouterOutlet>
-            <Route exact path="/tab1">
-              <Tab1 />
-            </Route>
-            <Route exact path="/tab2">
-              <Tab2 />
-            </Route>
-            <Route exact path="/tab3">
-              <Tab3 />
-            </Route>
-          </IonRouterOutlet>
-          <IonTabBar slot="bottom">
-            <IonTabButton tab="tab1" href="/tab1">
-              <IonIcon icon={home} />
-              <IonLabel>Tab 1</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="tab2" href="/tab2">
-              <IonIcon icon={search} />
-              <IonLabel>Tab 2</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="tab3" href="/tab3">
-              <IonIcon icon={trophy} />
-              <IonLabel>Tab 3</IonLabel>
-            </IonTabButton>
-          </IonTabBar>
-        </IonTabs>
-      </IonReactRouter>
-    </IonApp>
+    <IonReactRouter>
+      <IonTabs>
+        <IonRouterOutlet>
+          <Route exact path="/tab1">
+            <Tab1 />
+          </Route>
+          <Route exact path="/tab2">
+            <Tab2 />
+          </Route>
+          <Route exact path="/tab3">
+            <Tab3 />
+          </Route>
+        </IonRouterOutlet>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="tab1" href="/tab1">
+            <IonIcon icon={home} />
+            <IonLabel>Tab 1</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab2" href="/tab2">
+            <IonIcon icon={search} />
+            <IonLabel>Tab 2</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab3" href="/tab3">
+            <IonIcon icon={trophy} />
+            <IonLabel>Tab 3</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
+    </IonReactRouter>
+  </IonApp>
+
+
+
+
   );
 };
 
-export default App;
+export default React.memo(App);
+
+
+
+// const onLoadClientApi = () => {
+//   gapi.client.setApiKey(apiKey);
+//   return gapi.load("client", ()=> {
+//     return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch", "v1");
+//   });
+// }; 

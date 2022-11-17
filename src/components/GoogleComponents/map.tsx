@@ -11,18 +11,15 @@ import {
   DirectionsRenderer
 } from "@react-google-maps/api";
 import Places from './Places';
-import Distance from './Distance';
-// import { 
-//   IonContent, 
-//   IonHeader, 
-//   IonItem 
-// } from '@ionic/react';
+import Distance from '../Distance';
 import {Geolocation} from "@capacitor/geolocation";
 import {
   LatLit,
   DirectionsResult,
   MapOptions
-} from './Type';
+} from '../Type';
+
+// link to maps code: https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-directions
 
 const containerStyle = {
   "width": "600px",
@@ -90,46 +87,45 @@ const Map = () => {
 
 
   return (
-        <div className='container'>
-          <div className='controls' >
-            <h1>
-              Directions:
-            </h1>
-            <Places setOffice={(position: any) => {
-              setOffice(position);
-              mapRef.current?.panTo(position)}}/>
-            {!office && <p>Enter the address of your office</p>}
-            {directions && <Distance leg={directions.routes[0].legs[0]}/>}
-          </div>
-          <div className="map" >
-            <GoogleMap
-              id="map"
-              mapContainerStyle={containerStyle}
-              zoom={zoom}
-              center={center}
-              options={options}
-              onLoad={onLoad}>
-            
-              {directions && (
-                <DirectionsRenderer 
-                  directions={directions}
-                  options={{
-                  polylineOptions: {
-                    zIndex: 50,
-                    strokeColor: "#1976D2",
-                    strokeWeight: 5,
-                  },
-                }}/>
-              )}
+    <div className='container'>
+      <div className='controls' >
+        <h1>
+          Directions:
+        </h1>
+        <Places setOffice={(position: any) => {
+          setOffice(position);
+          mapRef.current?.panTo(position)}}/>
+          
+        {!office && <p>Enter the address of your office</p>}
+        {directions && <Distance leg={directions.routes[0].legs[0]}/>}
+        
+      </div>
+      <div className="map" >
+        <GoogleMap
+          id="map"
+          mapContainerStyle={containerStyle}
+          zoom={zoom}
+          center={center}
+          options={options}
+          onLoad={onLoad}>
+        
+          {directions && (
+            <DirectionsRenderer 
+              directions={directions}
+              options={{
+              polylineOptions: {
+                zIndex: 50,
+                strokeColor: "#1976D2",
+                strokeWeight: 5,
+              },
+            }}/>
+          )}
           {office && (
             <>
               <Marker position={office}/> 
               <MarkerClusterer >
                 
               { (clusterer) => 
-
-                // here, MarkerCluster expects back a JSX element so we couldnt just run the map function
-                // so we came up with an alternative.
                 <>
                   { houses.map((house) => (
                     <Marker
@@ -137,19 +133,19 @@ const Map = () => {
                       position={house}
                       clusterer={clusterer}
                       onClick={() => {
-                        fetchDirections(house);
-                    }}/>
-                  ))}
+                        fetchDirections(house)}}/>
+                    ))
+                  }
                 </>
               }
+              
               </MarkerClusterer>
             </>
           )}
-            </GoogleMap>
-          </div>
-        </div>
-    //   </IonItem>
-    // </IonContent>
+
+        </GoogleMap>
+      </div>
+    </div>
   )
 }
 
