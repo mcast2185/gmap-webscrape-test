@@ -1,13 +1,10 @@
 import React from 'react';
 
-import Home from './home';
-
-
 
 const Tab1: React.FC = () => {
 
   return (
-    <Home/>
+    <div>Tab one page</div>
   );
 };
 

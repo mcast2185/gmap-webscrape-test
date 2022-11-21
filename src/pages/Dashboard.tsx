@@ -12,16 +12,25 @@ import { logoApple, logoGoogle } from 'ionicons/icons';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import {SignInWithApple} from '@capacitor-community/apple-sign-in';
 import axios from "axios";
-import { gapi } from 'gapi-script';
 import config from '../../capacitor.config';
 
 
 
-const clientId = String(process.env.CLIENT_ID);
+
+
+const clientId = String(process.env.CUSTOM_SEARCH_CLIENT_ID);
 const API_URL = "http://localhost:5050";
 const API_URL_IOS = "capacitor://localhost:5050";
 const ANDROID = isPlatform('android');
 const IOS = isPlatform('ios');
+
+
+if (!isPlatform('capacitor')){
+  GoogleAuth.initialize({
+    clientId: clientId,
+    scopes: ["profile", "email", "maps", "places"]
+  });
+};
 
 const parseAttemptLogin = async (res: any, provider: "apple" | "google") => {
   const response = await axios
@@ -38,13 +47,7 @@ const parseAttemptLogin = async (res: any, provider: "apple" | "google") => {
 };
 
 
-const Home: React.FC<{}> = () => {
-  if (!isPlatform('capacitor')){
-    GoogleAuth.initialize({
-      clientId: clientId,
-      scopes: ["profile", "email", "maps", "places"]
-    });
-  };
+const Dashboard: React.FC<{}> = () => {
 
   const AppleSignIn = async () => {
     await SignInWithApple.authorize()
@@ -66,31 +69,32 @@ const Home: React.FC<{}> = () => {
 
   return (
     <div>
-      <IonHeader collapse="condense">
+      {/* <IonHeader collapse="condense">
         <IonTitle size="large">GoogleApi Test</IonTitle>
-      </IonHeader>
+      </IonHeader> */}
+      <div>
+        <h2>GoogleApi Testing</h2>
+      </div>
       <IonCard>
-      {IOS && (
-        <>
-        <IonButton expand='block' onClick={AppleSignIn}>
-          <IonIcon slot='start' icon={logoApple}/>
-            Login With Apple
-        </IonButton>
-        </>
-      )}
-      </IonCard>
-      <IonCard>
-      {ANDROID && (
-        <>
-        <IonButton expand='block' onClick={GoogleSignIn}>
-          <IonIcon slot='start' icon={logoGoogle}/>
-            Login With Google
-        </IonButton>
-        </>
-      )}
+        {IOS && (
+          <IonButton expand='block' onClick={AppleSignIn}>
+            <IonIcon slot='start' icon={logoApple}/>
+              Login With Apple
+          </IonButton>
+
+        )}
+        </IonCard>
+        <IonCard>
+        {ANDROID && (
+          <IonButton expand='block' onClick={GoogleSignIn}>
+            <IonIcon slot='start' icon={logoGoogle}/>
+              Login With Google
+          </IonButton>
+
+        )}
       </IonCard>
     </div>
   );
 };
 
-export default Home;
+export default Dashboard;

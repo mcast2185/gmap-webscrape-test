@@ -13,6 +13,8 @@ import {
 import "@reach/combobox/styles.css";
 import React, { useEffect } from "react";
 import { useLoadScript } from '@react-google-maps/api';
+import { isPlatform } from '@ionic/core';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 
 type PlacesProps = {
@@ -28,17 +30,12 @@ const comBoxList = {
   background: "black"
 };
 
-const libraries: any = ["places"]
-const apiKey = String(process.env.REACT_APP_GOOGLE_API_KEY);
-const clientId = String(process.env.CLIENT_ID);
+// const libraries: any = ["places"]
+// const apiKey = String(process.env.REACT_APP_GOOGLE_API_KEY);
+// const clientId = String(process.env.CLIENT_ID);
 
 
 const Places: React.FC<PlacesProps> = ({setOffice}) => {
-  // const {isLoaded} = useLoadScript({
-  //   googleMapsApiKey: apiKey,
-  //   libraries: libraries,
-  //   googleMapsClientId: clientId
-  // });
 
   const {
     ready, 
@@ -58,13 +55,6 @@ const Places: React.FC<PlacesProps> = ({setOffice}) => {
     setOffice({lat, lng})
   }
 
-  // const scriptLoad: any = () => {
-  //   if (document.querySelector('gapiScript')) return isLoaded}
-  
-
-  // useEffect(() => {
-  //   return scriptLoad()
-  // })
 
   return (
     <Combobox onSelect={handleSelect}>

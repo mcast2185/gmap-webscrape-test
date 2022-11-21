@@ -44,6 +44,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Dashboard from './pages/Dashboard';
 
 
 
@@ -69,8 +70,8 @@ setupIonicReact();
     
   }
   
-  const clientId = String(process.env.CLIENT_ID);
-  const apiKey = String(process.env.REACT_APP_GOOGLE_API_KEY);
+  const clientId = String(process.env.CUSTOM_SEARCH_CLIENT_ID);
+  const apiKey = String(process.env.CUSTOM_SEARCH_API_KEY);
   const libraries: any = ["places"];
   const scriptSource = "https://apis.google.com/js/client.js";
   // const scriptSource = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap`;
@@ -78,7 +79,7 @@ setupIonicReact();
 
 !isPlatform("capacitor") ? GoogleAuth.initialize({
   clientId: clientId,
-  scopes: ["profile", "email", "https://www.googleapis.com/auth/cse", scriptSource],
+  scopes: ["profile", "email", "https://www.googleapis.com/auth/cse"],
 }) : console.log("GoogleAuth failed to initialize");
  
 const loadGoogleScript = ({src, id, onLoad}: any) => {
@@ -121,9 +122,8 @@ const App: Component | any = () =>{
   };
 
   return (
-
-
-    <IonApp>
+  <IonApp>
+    <Dashboard/>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
