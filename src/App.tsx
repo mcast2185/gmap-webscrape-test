@@ -72,7 +72,6 @@ const clientId = String(process.env.CUSTOM_SEARCH_CLIENT_ID);
 const apiKey = String(process.env.CUSTOM_SEARCH_API_KEY);
 const libraries: any = ["places"];
 const scriptSource = "https://apis.google.com/js/client.js";
-// const scriptSource = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap`;
 
 
 // this should be a redux function-->
@@ -111,7 +110,6 @@ const App: Component | any = () =>{
         scopes: ["profile", "email"]
       })
     };
-
     gapi.load('client:auth2', start);
 
   })

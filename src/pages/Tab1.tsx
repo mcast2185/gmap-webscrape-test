@@ -8,7 +8,7 @@ const Tab1: React.FC = () => {
 
   return (
     <IonContent >
-    <Dashboard/>
+      <Dashboard/>
     </IonContent>
   );
 };

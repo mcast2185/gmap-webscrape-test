@@ -42,6 +42,16 @@ const parseAttemptLogin = async (res: any, provider: "apple" | "google") => {
 
 const Dashboard: React.FC<{}> = () => {
   const [googleAccessToken, setAccessToken] = useState()
+  useEffect(()=> {
+    const start = () => {
+      GoogleAuth.initialize({
+        clientId: clientId,
+        scopes: ["profile", "email"]
+      })
+    };
+    gapi.load('client:auth2', start);
+
+  })
 
   // Appears with IOS devices
   const AppleSignIn = async () => {
