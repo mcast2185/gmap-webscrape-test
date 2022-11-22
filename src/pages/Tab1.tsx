@@ -1,10 +1,15 @@
+import { IonContent, IonPage } from '@ionic/react';
 import React from 'react';
+import Dashboard from './Dashboard';
+
 
 
 const Tab1: React.FC = () => {
 
   return (
-    <div>Tab one page</div>
+    <IonContent >
+    <Dashboard/>
+    </IonContent>
   );
 };
 

@@ -30,11 +30,6 @@ const comBoxList = {
   background: "black"
 };
 
-// const libraries: any = ["places"]
-// const apiKey = String(process.env.REACT_APP_GOOGLE_API_KEY);
-// const clientId = String(process.env.CLIENT_ID);
-
-
 const Places: React.FC<PlacesProps> = ({setOffice}) => {
 
   const {

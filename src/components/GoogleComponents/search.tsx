@@ -115,9 +115,10 @@ import { GoogleApis, google, customsearch_v1 } from 'googleapis';
 import { loadAuth2, gapiComplete} from 'gapi-script';
 import {Geolocation} from "@capacitor/geolocation";
 import React, {useState, useEffect} from 'react';
-import { GoogleAuth, GoogleAuthPlugin,  } from '@codetrix-studio/capacitor-google-auth';
+import { GoogleAuth, GoogleAuthPlugin, GoogleAuthPluginOptions } from '@codetrix-studio/capacitor-google-auth';
 import  axios from 'axios';
 import { isPlatform } from '@ionic/core';
+import { IonButton } from '@ionic/react';
 
 
 const clientId = String(process.env.CUSTOM_SEARCH_CLIENT_ID);
@@ -176,6 +177,7 @@ const SearchResults = ({results}: any) => {
 
   return (
     <div id="csAPI">
+      <IonButton onClick={() => executeApiQuery()}>Click here</IonButton>
       <button onClick={()=> executeApiQuery()}>click</button>
     </div>
   )

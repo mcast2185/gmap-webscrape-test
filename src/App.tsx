@@ -7,7 +7,9 @@ import {
   IonTabButton,
   IonRouterOutlet,
   setupIonicReact,
-  isPlatform
+  isPlatform,
+  IonContent,
+  IonItem
 } from '@ionic/react';
 import React, { 
   useMemo,
@@ -20,7 +22,7 @@ import { useLoadScript } from '@react-google-maps/api';
 import { IonReactRouter } from '@ionic/react-router';
 import { search, home, trophy } from 'ionicons/icons';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
-import { gapi } from 'gapi-script';
+
 
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
@@ -45,6 +47,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Dashboard from './pages/Dashboard';
+import { gapi } from 'gapi-script';
 
 
 
@@ -64,29 +67,20 @@ import Dashboard from './pages/Dashboard';
 
 
 setupIonicReact();
-
-  const handleCallbackResponse = (response: any) => {
-    console.log("JWT ID TOKEN: " + response.credential);
-    
-  }
   
-  const clientId = String(process.env.CUSTOM_SEARCH_CLIENT_ID);
-  const apiKey = String(process.env.CUSTOM_SEARCH_API_KEY);
-  const libraries: any = ["places"];
-  const scriptSource = "https://apis.google.com/js/client.js";
-  // const scriptSource = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap`;
+const clientId = String(process.env.CUSTOM_SEARCH_CLIENT_ID);
+const apiKey = String(process.env.CUSTOM_SEARCH_API_KEY);
+const libraries: any = ["places"];
+const scriptSource = "https://apis.google.com/js/client.js";
+// const scriptSource = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap`;
 
 
-!isPlatform("capacitor") ? GoogleAuth.initialize({
-  clientId: clientId,
-  scopes: ["profile", "email", "https://www.googleapis.com/auth/cse"],
-}) : console.log("GoogleAuth failed to initialize");
- 
+// this should be a redux function-->
 const loadGoogleScript = ({src, id, onLoad}: any) => {
   const exist = document.getElementById(id)
   if (exist) {
-    console.log("Script already exist");
-    return exist;
+    console.log("Script already exist: App*");
+    return;
   } else {
     const script = document.createElement("script");
     script.setAttribute("id", id);
@@ -94,14 +88,14 @@ const loadGoogleScript = ({src, id, onLoad}: any) => {
     script.defer = true;
     script.onload = () => {
       onLoad && onLoad();
-      console.log("Script is loaded");
+      console.log("Script is loaded: App*");
     };
-    console.log(document.head.appendChild(script));
-    
+    // console.log(document.head.appendChild(script));
+
     document.head.appendChild(script);
   }
 };
-
+// --|
 
 const App: Component | any = () =>{
   const {isLoaded} = useLoadScript({
@@ -109,21 +103,34 @@ const App: Component | any = () =>{
     libraries: libraries
   });
 
+  
+  useEffect(()=> {
+    const start = () => {
+      GoogleAuth.initialize({
+        clientId: clientId,
+        scopes: ["profile", "email"]
+      })
+    };
+
+    gapi.load('client:auth2', start);
+
+  })
 
   if (isLoaded) {
     loadGoogleScript({
       src: scriptSource,
       id: 'gapiScript',
-      onLoad: () => console.log("Places library is loaded"),
+      onLoad: () => console.log("Places library is loaded: App*"),
     });
   } else {
     console.log("Libraries are not loaded");
-    
   };
 
   return (
   <IonApp>
-    <Dashboard/>
+    {/* <IonContent style={{zIndex: "50"}} >
+      <Dashboard/>
+    </IonContent> */}
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
@@ -153,6 +160,7 @@ const App: Component | any = () =>{
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
+
   </IonApp>
 
 
@@ -162,12 +170,3 @@ const App: Component | any = () =>{
 };
 
 export default React.memo(App);
-
-
-
-// const onLoadClientApi = () => {
-//   gapi.client.setApiKey(apiKey);
-//   return gapi.load("client", ()=> {
-//     return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch", "v1");
-//   });
-// }; 
